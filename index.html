@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0053)file:///C:/Users/Kocka/Downloads/beosztaskero_10.html -->
+<!-- saved from url=(0053)file:///C:/Users/Kocka/Downloads/beosztaskero_11.html -->
 <html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,16 +118,16 @@ label{font-size:14px;color:#666;display:block;margin-bottom:6px}
 
   <div id="formView" style="display: block;">
     <h1>Beosztáskérő</h1>
-    <p class="sub" id="monthLabel">2026. július – kerések beküldése</p>
+    <p class="sub" id="monthLabel">2026. július – kérések beküldése</p>
 
     <div class="card">
       <label>Teljes név</label>
       <div class="autocomplete-wrap">
         <input type="text" id="nevInput" placeholder="Kezdj el gépelni..." autocomplete="off">
-        <div class="dropdown" id="nevDropdown"><div class="dropdown-item"><span>Kerekes Kristóf</span><div style="display:flex;gap:4px"><span class="ora-badge">MVT</span><span class="ora-badge">6.05 óra</span></div></div></div>
+        <div class="dropdown" id="nevDropdown"></div>
       </div>
-      <div class="info-box" id="oraInfo" style="display: block;">
-        Szerződött napi óra: <strong id="oraInfoVal">6.05 óra</strong> &nbsp;·&nbsp; Kompetencia: <strong id="kompInfoVal">MVT</strong>
+      <div class="info-box" id="oraInfo" style="display:none">
+        Szerződött napi óra: <strong id="oraInfoVal">—</strong> &nbsp;·&nbsp; Kompetencia: <strong id="kompInfoVal">—</strong>
       </div>
       <div class="name-actions">
         <button class="btn small" id="addNameBtn">+ Új dolgozó</button>
@@ -138,9 +138,9 @@ label{font-size:14px;color:#666;display:block;margin-bottom:6px}
       </div>
     </div>
 
-    <div class="card" id="calCard" style="display: block;">
+    <div class="card" id="calCard" style="display:none">
       <div class="cal-header">
-        <span class="cal-title" id="calTitle">2026. július</span>
+        <span class="cal-title" id="calTitle"></span>
         <div>
           <button class="nav-btn" id="prevBtn">‹</button>
           <button class="nav-btn" id="nextBtn">›</button>
@@ -151,27 +151,27 @@ label{font-size:14px;color:#666;display:block;margin-bottom:6px}
         <div class="legend-item"><div class="legend-dot sz">SZ</div> Szabadság – hosszú nyomás / jobb klikk</div>
       </div>
       <p class="hint">Hétvégére csak szabadnap (XX) jelölhető.</p>
-      <div class="cal-grid" id="calGrid"><div class="day-label">H</div><div class="day-label">K</div><div class="day-label">Sze</div><div class="day-label">Cs</div><div class="day-label">P</div><div class="day-label">Szo</div><div class="day-label">V</div><div class="day empty"></div><div class="day empty"></div><div class="day"><div class="day-num">1</div></div><div class="day"><div class="day-num">2</div></div><div class="day"><div class="day-num">3</div></div><div class="day weekend"><div class="day-num">4</div></div><div class="day weekend"><div class="day-num">5</div></div><div class="day"><div class="day-num">6</div></div><div class="day"><div class="day-num">7</div></div><div class="day"><div class="day-num">8</div></div><div class="day"><div class="day-num">9</div></div><div class="day"><div class="day-num">10</div></div><div class="day weekend"><div class="day-num">11</div></div><div class="day weekend"><div class="day-num">12</div></div><div class="day"><div class="day-num">13</div></div><div class="day"><div class="day-num">14</div></div><div class="day"><div class="day-num">15</div></div><div class="day"><div class="day-num">16</div></div><div class="day"><div class="day-num">17</div></div><div class="day weekend"><div class="day-num">18</div></div><div class="day weekend"><div class="day-num">19</div></div><div class="day"><div class="day-num">20</div></div><div class="day"><div class="day-num">21</div></div><div class="day"><div class="day-num">22</div></div><div class="day"><div class="day-num">23</div></div><div class="day"><div class="day-num">24</div></div><div class="day weekend"><div class="day-num">25</div></div><div class="day weekend"><div class="day-num">26</div></div><div class="day"><div class="day-num">27</div></div><div class="day"><div class="day-num">28</div></div><div class="day"><div class="day-num">29</div></div><div class="day"><div class="day-num">30</div></div><div class="day"><div class="day-num">31</div></div></div>
+      <div class="cal-grid" id="calGrid"></div>
       <div class="limit-bar"><div class="limit-fill" id="limitFill" style="width:0%"></div></div>
-      <div class="limit-text" id="limitText">Szabadnap (XX): 0 / 14</div>
+      <div class="limit-text" id="limitText"></div>
       <div class="stats">
         <div class="stat xx" id="statXX">XX: 0 nap</div>
         <div class="stat sz" id="statSZ">SZ: 0 nap</div>
       </div>
     </div>
 
-    <div class="card" id="limitCard" style="display: block;">
+    <div class="card" id="limitCard" style="display:none">
       <div class="info-box" style="margin-top:0">
-        Max kérhető szabadnap (XX): <strong id="limitNum">14</strong> nap
-        <br><small style="font-size:12px;color:#999" id="limitFormula">FELKEREKÍT(31 − ((6.05 × 23 munkanap / 12) × 1,5))</small>
+        Max kérhető szabadnap (XX): <strong id="limitNum">—</strong> nap
+        <br><small style="font-size:12px;color:#999" id="limitFormula"></small>
       </div>
     </div>
 
-    <div class="card" id="extraCard" style="display: block;">
+    <div class="card" id="extraCard" style="display:none">
       <div id="overtimeBlock" style="display:none">
         <label>Szeretnél túlórát?</label>
         <div class="toggle-group" id="overtimeToggle">
-          <button type="button" class="toggle-btn active" data-val="nem">Nem</button>
+          <button type="button" class="toggle-btn" data-val="nem">Nem</button>
           <button type="button" class="toggle-btn" data-val="igen">Igen</button>
         </div>
         <div id="overtimeHoursWrap" style="display:none;margin-top:0.75rem">
@@ -189,13 +189,13 @@ label{font-size:14px;color:#666;display:block;margin-bottom:6px}
       <div id="cuszoBlock" style="margin-top:1rem">
         <label>Szeretnél csúszó műszakot?</label>
         <div class="toggle-group" id="cuszoToggle">
-          <button type="button" class="toggle-btn active" data-val="nem">Nem</button>
+          <button type="button" class="toggle-btn" data-val="nem">Nem</button>
           <button type="button" class="toggle-btn" data-val="igen">Igen</button>
         </div>
       </div>
     </div>
 
-    <div class="card" id="submitCard" style="display: block;">
+    <div class="card" id="submitCard" style="display:none">
       <button class="btn primary" id="submitBtn" disabled="">Beküldés</button>
       <div class="error-msg" id="errorMsg">Hiba történt, próbáld újra.</div>
     </div>
@@ -513,8 +513,13 @@ async function init(){
   const hour = now.getHours();
   const testMode = window.location.search.includes("test=1") || window.location.href.startsWith("file://");
   const zarva = !testMode && ((day > 11) || (day === 11 && hour >= 23));
+
+  // Minden nézet elrejtése először
+  document.getElementById("loadingView").style.display="none";
+  document.getElementById("zarvaView").style.display="none";
+  document.getElementById("formView").style.display="none";
+
   if(zarva){
-    document.getElementById("loadingView").style.display="none";
     document.getElementById("zarvaView").style.display="block";
     return;
   }
@@ -528,9 +533,8 @@ async function init(){
   } catch(e){
     console.log("Sheets nevsor nem erheto, cache-bol toltve.");
   }
-  document.getElementById("loadingView").style.display="none";
   document.getElementById("formView").style.display="block";
-  document.getElementById("monthLabel").textContent=`${viewYear}. ${monthNames[viewMonth]} – kerések beküldése`;
+  document.getElementById("monthLabel").textContent=`${viewYear}. ${monthNames[viewMonth]} – kérések beküldése`;
 }
 init();
 </script>
@@ -539,37 +543,21 @@ init();
 <button id="helpBtn" onclick="openTutorial()" title="Súgó">?</button>
 
 <!-- TUTORIAL MODAL -->
-<div id="tutorialBg" style="display: none;">
+<div id="tutorialBg" style="display:none">
   <div id="tutorialModal">
     <div id="tutorialHeader">
-      <span id="tutorialTitle">⏰ Mikor tölthető ki?</span>
+      <span id="tutorialTitle"></span>
       <button onclick="closeTutorial()" id="tutorialClose">✕</button>
     </div>
     <div id="tutorialBody">
-      <div id="tutorialIllustration"><div class="illu-mock">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
-        <div style="width:40px;height:40px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:18px">🟢</div>
-        <div style="text-align:left"><div style="font-size:13px;font-weight:600;color:#1a1a1a">Nyitva</div><div style="font-size:12px;color:#666">Minden hónap 1–11-e között</div></div>
-      </div>
-      <div style="height:1px;background:#e5e5e5;margin:8px 0"></div>
-      <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
-        <div style="width:40px;height:40px;border-radius:50%;background:#FFF3E0;display:flex;align-items:center;justify-content:center;font-size:18px">🔒</div>
-        <div style="text-align:left"><div style="font-size:13px;font-weight:600;color:#1a1a1a">Zárva</div><div style="font-size:12px;color:#666">11-én 23:00 után – hónap végéig</div></div>
-      </div>
-    </div></div>
-      <div id="tutorialText"><h3>Fontos határidők</h3>
-    <ul>
-      <li>Az app minden hónap <strong>1-jén nyílik</strong> és <strong>11-én este zár</strong></li>
-      <li>Ha lekésed a határidőt, a következő hónapban már nincs lehetőség módosítani</li>
-      <li>A naptár automatikusan a <strong>következő hónapra</strong> mutat</li>
-    </ul>
-    <div class="tip">📱 Könyvjelzőzd be az app linkjét, hogy minden hónapban könnyen megtaláld!</div></div>
+      <div id="tutorialIllustration"></div>
+      <div id="tutorialText"></div>
     </div>
     <div id="tutorialFooter">
-      <div id="tutorialDots"><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot active" style="cursor: pointer;"></div></div>
+      <div id="tutorialDots"></div>
       <div id="tutorialBtns">
         <button id="tutorialPrev" onclick="tutorialStep(-1)">← Vissza</button>
-        <button id="tutorialNext" onclick="tutorialStep(1)">✓ Értettem, kezdjük!</button>
+        <button id="tutorialNext" onclick="tutorialStep(1)">Következő →</button>
       </div>
     </div>
   </div>
