@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0063)file:///C:/Users/Kocka/Desktop/Beoszt%C3%A1sk%C3%A9r%C5%91.html -->
+<!-- saved from url=(0053)file:///C:/Users/Kocka/Downloads/beosztaskero_10.html -->
 <html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,10 +124,10 @@ label{font-size:14px;color:#666;display:block;margin-bottom:6px}
       <label>Teljes név</label>
       <div class="autocomplete-wrap">
         <input type="text" id="nevInput" placeholder="Kezdj el gépelni..." autocomplete="off">
-        <div class="dropdown" id="nevDropdown"></div>
+        <div class="dropdown" id="nevDropdown"><div class="dropdown-item"><span>Kerekes Kristóf</span><div style="display:flex;gap:4px"><span class="ora-badge">MVT</span><span class="ora-badge">6.05 óra</span></div></div></div>
       </div>
-      <div class="info-box" id="oraInfo" style="display:none">
-        Szerződött napi óra: <strong id="oraInfoVal">—</strong> &nbsp;·&nbsp; Kompetencia: <strong id="kompInfoVal">—</strong>
+      <div class="info-box" id="oraInfo" style="display: block;">
+        Szerződött napi óra: <strong id="oraInfoVal">6.05 óra</strong> &nbsp;·&nbsp; Kompetencia: <strong id="kompInfoVal">MVT</strong>
       </div>
       <div class="name-actions">
         <button class="btn small" id="addNameBtn">+ Új dolgozó</button>
@@ -138,9 +138,9 @@ label{font-size:14px;color:#666;display:block;margin-bottom:6px}
       </div>
     </div>
 
-    <div class="card" id="calCard" style="display:none">
+    <div class="card" id="calCard" style="display: block;">
       <div class="cal-header">
-        <span class="cal-title" id="calTitle"></span>
+        <span class="cal-title" id="calTitle">2026. július</span>
         <div>
           <button class="nav-btn" id="prevBtn">‹</button>
           <button class="nav-btn" id="nextBtn">›</button>
@@ -151,27 +151,27 @@ label{font-size:14px;color:#666;display:block;margin-bottom:6px}
         <div class="legend-item"><div class="legend-dot sz">SZ</div> Szabadság – hosszú nyomás / jobb klikk</div>
       </div>
       <p class="hint">Hétvégére csak szabadnap (XX) jelölhető.</p>
-      <div class="cal-grid" id="calGrid"></div>
+      <div class="cal-grid" id="calGrid"><div class="day-label">H</div><div class="day-label">K</div><div class="day-label">Sze</div><div class="day-label">Cs</div><div class="day-label">P</div><div class="day-label">Szo</div><div class="day-label">V</div><div class="day empty"></div><div class="day empty"></div><div class="day"><div class="day-num">1</div></div><div class="day"><div class="day-num">2</div></div><div class="day"><div class="day-num">3</div></div><div class="day weekend"><div class="day-num">4</div></div><div class="day weekend"><div class="day-num">5</div></div><div class="day"><div class="day-num">6</div></div><div class="day"><div class="day-num">7</div></div><div class="day"><div class="day-num">8</div></div><div class="day"><div class="day-num">9</div></div><div class="day"><div class="day-num">10</div></div><div class="day weekend"><div class="day-num">11</div></div><div class="day weekend"><div class="day-num">12</div></div><div class="day"><div class="day-num">13</div></div><div class="day"><div class="day-num">14</div></div><div class="day"><div class="day-num">15</div></div><div class="day"><div class="day-num">16</div></div><div class="day"><div class="day-num">17</div></div><div class="day weekend"><div class="day-num">18</div></div><div class="day weekend"><div class="day-num">19</div></div><div class="day"><div class="day-num">20</div></div><div class="day"><div class="day-num">21</div></div><div class="day"><div class="day-num">22</div></div><div class="day"><div class="day-num">23</div></div><div class="day"><div class="day-num">24</div></div><div class="day weekend"><div class="day-num">25</div></div><div class="day weekend"><div class="day-num">26</div></div><div class="day"><div class="day-num">27</div></div><div class="day"><div class="day-num">28</div></div><div class="day"><div class="day-num">29</div></div><div class="day"><div class="day-num">30</div></div><div class="day"><div class="day-num">31</div></div></div>
       <div class="limit-bar"><div class="limit-fill" id="limitFill" style="width:0%"></div></div>
-      <div class="limit-text" id="limitText"></div>
+      <div class="limit-text" id="limitText">Szabadnap (XX): 0 / 14</div>
       <div class="stats">
         <div class="stat xx" id="statXX">XX: 0 nap</div>
         <div class="stat sz" id="statSZ">SZ: 0 nap</div>
       </div>
     </div>
 
-    <div class="card" id="limitCard" style="display:none">
+    <div class="card" id="limitCard" style="display: block;">
       <div class="info-box" style="margin-top:0">
-        Max kérhető szabadnap (XX): <strong id="limitNum">—</strong> nap
-        <br><small style="font-size:12px;color:#999" id="limitFormula"></small>
+        Max kérhető szabadnap (XX): <strong id="limitNum">14</strong> nap
+        <br><small style="font-size:12px;color:#999" id="limitFormula">FELKEREKÍT(31 − ((6.05 × 23 munkanap / 12) × 1,5))</small>
       </div>
     </div>
 
-    <div class="card" id="extraCard" style="display:none">
+    <div class="card" id="extraCard" style="display: block;">
       <div id="overtimeBlock" style="display:none">
         <label>Szeretnél túlórát?</label>
         <div class="toggle-group" id="overtimeToggle">
-          <button type="button" class="toggle-btn" data-val="nem">Nem</button>
+          <button type="button" class="toggle-btn active" data-val="nem">Nem</button>
           <button type="button" class="toggle-btn" data-val="igen">Igen</button>
         </div>
         <div id="overtimeHoursWrap" style="display:none;margin-top:0.75rem">
@@ -189,13 +189,13 @@ label{font-size:14px;color:#666;display:block;margin-bottom:6px}
       <div id="cuszoBlock" style="margin-top:1rem">
         <label>Szeretnél csúszó műszakot?</label>
         <div class="toggle-group" id="cuszoToggle">
-          <button type="button" class="toggle-btn" data-val="nem">Nem</button>
+          <button type="button" class="toggle-btn active" data-val="nem">Nem</button>
           <button type="button" class="toggle-btn" data-val="igen">Igen</button>
         </div>
       </div>
     </div>
 
-    <div class="card" id="submitCard" style="display:none">
+    <div class="card" id="submitCard" style="display: block;">
       <button class="btn primary" id="submitBtn" disabled="">Beküldés</button>
       <div class="error-msg" id="errorMsg">Hiba történt, próbáld újra.</div>
     </div>
@@ -534,6 +534,327 @@ async function init(){
 }
 init();
 </script>
+
+<!-- SÚGÓ GOMB -->
+<button id="helpBtn" onclick="openTutorial()" title="Súgó">?</button>
+
+<!-- TUTORIAL MODAL -->
+<div id="tutorialBg" style="display: none;">
+  <div id="tutorialModal">
+    <div id="tutorialHeader">
+      <span id="tutorialTitle">⏰ Mikor tölthető ki?</span>
+      <button onclick="closeTutorial()" id="tutorialClose">✕</button>
+    </div>
+    <div id="tutorialBody">
+      <div id="tutorialIllustration"><div class="illu-mock">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:40px;height:40px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:18px">🟢</div>
+        <div style="text-align:left"><div style="font-size:13px;font-weight:600;color:#1a1a1a">Nyitva</div><div style="font-size:12px;color:#666">Minden hónap 1–11-e között</div></div>
+      </div>
+      <div style="height:1px;background:#e5e5e5;margin:8px 0"></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+        <div style="width:40px;height:40px;border-radius:50%;background:#FFF3E0;display:flex;align-items:center;justify-content:center;font-size:18px">🔒</div>
+        <div style="text-align:left"><div style="font-size:13px;font-weight:600;color:#1a1a1a">Zárva</div><div style="font-size:12px;color:#666">11-én 23:00 után – hónap végéig</div></div>
+      </div>
+    </div></div>
+      <div id="tutorialText"><h3>Fontos határidők</h3>
+    <ul>
+      <li>Az app minden hónap <strong>1-jén nyílik</strong> és <strong>11-én este zár</strong></li>
+      <li>Ha lekésed a határidőt, a következő hónapban már nincs lehetőség módosítani</li>
+      <li>A naptár automatikusan a <strong>következő hónapra</strong> mutat</li>
+    </ul>
+    <div class="tip">📱 Könyvjelzőzd be az app linkjét, hogy minden hónapban könnyen megtaláld!</div></div>
+    </div>
+    <div id="tutorialFooter">
+      <div id="tutorialDots"><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot" style="cursor: pointer;"></div><div class="t-dot active" style="cursor: pointer;"></div></div>
+      <div id="tutorialBtns">
+        <button id="tutorialPrev" onclick="tutorialStep(-1)">← Vissza</button>
+        <button id="tutorialNext" onclick="tutorialStep(1)">✓ Értettem, kezdjük!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+#helpBtn{
+  position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;
+  background:#1D9E75;color:#fff;border:none;font-size:22px;font-weight:700;
+  cursor:pointer;box-shadow:0 4px 12px rgba(29,158,117,0.4);z-index:999;
+  font-family:system-ui,sans-serif;transition:transform 0.2s;
+}
+#helpBtn:hover{transform:scale(1.1)}
+#tutorialBg{
+  position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  animation:fadeIn 0.2s ease;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+#tutorialModal{
+  background:#fff;border-radius:16px;width:90%;max-width:480px;
+  max-height:90vh;overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 20px 60px rgba(0,0,0,0.3);
+}
+#tutorialHeader{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.25rem;border-bottom:1px solid #e5e5e5;
+}
+#tutorialTitle{font-size:15px;font-weight:600;color:#1a1a1a}
+#tutorialClose{background:none;border:none;cursor:pointer;font-size:18px;color:#999;padding:4px}
+#tutorialClose:hover{color:#1a1a1a}
+#tutorialBody{padding:1.25rem;flex:1;overflow-y:auto}
+#tutorialIllustration{
+  background:#f5f5f3;border-radius:12px;padding:1.25rem;margin-bottom:1rem;
+  text-align:center;min-height:160px;display:flex;align-items:center;justify-content:center;
+  font-size:14px;line-height:1.6;
+}
+#tutorialText{font-size:14px;color:#444;line-height:1.7}
+#tutorialText h3{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:0.5rem}
+#tutorialText ul{padding-left:1.25rem;margin-top:0.5rem}
+#tutorialText ul li{margin-bottom:0.4rem}
+#tutorialText .tip{background:#E1F5EE;border-radius:8px;padding:0.6rem 0.9rem;margin-top:0.75rem;font-size:13px;color:#085041}
+#tutorialFooter{
+  padding:1rem 1.25rem;border-top:1px solid #e5e5e5;
+  display:flex;align-items:center;justify-content:space-between;
+}
+#tutorialDots{display:flex;gap:6px}
+.t-dot{width:8px;height:8px;border-radius:50%;background:#ddd;transition:background 0.2s}
+.t-dot.active{background:#1D9E75}
+#tutorialBtns{display:flex;gap:8px}
+#tutorialPrev,#tutorialNext{
+  padding:7px 16px;border-radius:8px;border:1px solid #ddd;
+  background:#fff;color:#1a1a1a;font-size:13px;cursor:pointer;font-family:system-ui,sans-serif;
+}
+#tutorialNext{background:#1D9E75;border-color:#1D9E75;color:#fff}
+#tutorialPrev:hover{background:#f5f5f3}
+#tutorialNext:hover{background:#0F6E56}
+#tutorialPrev:disabled{opacity:0.3;cursor:not-allowed}
+.illu-mock{font-family:system-ui,sans-serif;width:100%}
+.illu-field{background:#fff;border:1px solid #ddd;border-radius:8px;padding:8px 12px;font-size:13px;color:#999;text-align:left;margin-bottom:6px}
+.illu-field.active{border-color:#1D9E75;color:#1a1a1a}
+.illu-select{background:#fff;border:1px solid #1D9E75;border-radius:8px;padding:6px 10px;font-size:12px;color:#1a1a1a;display:inline-block;margin:3px}
+.illu-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.illu-badge.mv{background:#E3F2FD;color:#1565C0}
+.illu-badge.ora{background:#f0f0ee;color:#666}
+.illu-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:8px}
+.illu-day{text-align:center;padding:5px 2px;border-radius:5px;font-size:11px;border:1px solid transparent}
+.illu-day.xx{background:#E1F5EE;border-color:#1D9E75;color:#085041;font-weight:600}
+.illu-day.sz{background:#EDE7F6;border-color:#7B5EA7;color:#4A2D8A;font-weight:600}
+.illu-day.wk{color:#ccc}
+.illu-day.norm{color:#1a1a1a}
+.illu-arrow{font-size:28px;margin:0.5rem 0;color:#1D9E75}
+.illu-toggle{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.illu-tbtn{padding:6px 20px;border-radius:8px;font-size:13px;border:1px solid #ddd;background:#fff;color:#999}
+.illu-tbtn.on{background:#1D9E75;border-color:#1D9E75;color:#fff}
+.illu-lock{font-size:48px;margin-bottom:8px}
+.illu-check{font-size:48px;color:#1D9E75}
+</style>
+
+<script>
+const tutorialSteps = [
+  {
+    title: "👋 Üdvözlet – Hogyan működik az app?",
+    illustration: `<div class="illu-mock">
+      <div style="font-size:32px;margin-bottom:12px">📅</div>
+      <div style="font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Beosztáskérő</div>
+      <div style="font-size:13px;color:#666">Ez az app arra szolgál, hogy minden hónapban jelezd, mely napokon szeretnél szabadnapot vagy szabadságot. Néhány lépés az egész!</div>
+    </div>`,
+    text: `<h3>Mire való ez az app?</h3>
+    <p>Havonta egyszer kell kitölteni. Megadod a nevedet, jelölöd a kívánt szabadnapjaidat, és bekülded. Az adatok automatikusan megérkeznek a beosztást készítő kollégához.</p>
+    <div class="tip">💡 A kitöltés minden hónap <strong>1-jétől 11-éig</strong> lehetséges.</div>`
+  },
+  {
+    title: "1. lépés – Névválasztás",
+    illustration: `<div class="illu-mock">
+      <div class="illu-field active">🔍 Kezdj el gépelni... pl. "Kov"</div>
+      <div style="background:#fff;border:1px solid #ddd;border-radius:8px;overflow:hidden">
+        <div style="padding:8px 12px;font-size:12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0f0f0">
+          <span>Kovács Anna</span>
+          <span><span class="illu-badge mv">MVT</span> <span class="illu-badge ora">8 óra</span></span>
+        </div>
+        <div style="padding:8px 12px;font-size:12px;display:flex;justify-content:space-between;align-items:center;color:#999">
+          <span>Kovács Béla</span>
+          <span><span class="illu-badge ora" style="background:#f0f0ee">6 óra</span></span>
+        </div>
+      </div>
+    </div>`,
+    text: `<h3>Keresd meg a nevedet</h3>
+    <p>A névmezőbe kezdj el gépelni – a lista automatikusan szűkül. Kattints a nevedre a listában.</p>
+    <ul>
+      <li>A neved mellett látod a <strong>kompetenciádat</strong> és az <strong>órakeretedet</strong></li>
+      <li>Névválasztás után ezek automatikusan betöltődnek</li>
+      <li>Ha nem találod a nevedet, jelezd a beosztónak!</li>
+    </ul>
+    <div class="tip">💡 Nem kell az egész nevet begépelni – elég néhány betű.</div>`
+  },
+  {
+    title: "2. lépés – Szabadnap jelölése (XX)",
+    illustration: `<div class="illu-mock">
+      <div class="illu-cal">
+        ${["H","K","Sze","Cs","P","Szo","V"].map(d=>`<div style="text-align:center;font-size:10px;color:#999;padding:3px 0">${d}</div>`).join("")}
+        ${[1,2,3,4,5,6,7,8,9,10,11,12,13,14].map(d=>{
+          let cls = d===6||d===7||d===13||d===14 ? "wk" : d===3||d===8||d===11 ? "xx" : "norm";
+          let label = cls==="xx" ? `<div style="font-size:9px;font-weight:700">XX</div>` : "";
+          return `<div class="illu-day ${cls}">${d}${label}</div>`;
+        }).join("")}
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:#085041;background:#E1F5EE;border-radius:6px;padding:6px 10px">
+        ☝️ Bal klikk / koppintás = Szabadnap (XX)
+      </div>
+    </div>`,
+    text: `<h3>Hogyan jelölj szabadnapot?</h3>
+    <p><strong>Bal kattintással</strong> (mobilon: koppintással) jelölhetsz szabadnapot egy napra. A nap zöldre vált és XX jelölést kap.</p>
+    <ul>
+      <li>Hétvégére is jelölhető</li>
+      <li>Van egy <strong>maximum limit</strong> – ha elérted, több XX nem jelölhető</li>
+      <li>Újabb kattintással <strong>törölheted</strong> a jelölést</li>
+    </ul>
+    <div class="tip">💡 A limit a szerződött órakereted alapján számolódik automatikusan.</div>`
+  },
+  {
+    title: "3. lépés – Szabadság jelölése (SZ)",
+    illustration: `<div class="illu-mock">
+      <div class="illu-cal">
+        ${["H","K","Sze","Cs","P","Szo","V"].map(d=>`<div style="text-align:center;font-size:10px;color:#999;padding:3px 0">${d}</div>`).join("")}
+        ${[1,2,3,4,5,6,7,8,9,10,11,12,13,14].map(d=>{
+          let cls = d===6||d===7||d===13||d===14 ? "wk" : d===4||d===9||d===12 ? "sz" : "norm";
+          let label = cls==="sz" ? `<div style="font-size:9px;font-weight:700">SZ</div>` : "";
+          return `<div class="illu-day ${cls}">${d}${label}</div>`;
+        }).join("")}
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:#4A2D8A;background:#EDE7F6;border-radius:6px;padding:6px 10px">
+        🖱️ Jobb klikk / hosszú nyomás = Szabadság (SZ)
+      </div>
+    </div>`,
+    text: `<h3>Hogyan jelölj szabadságot?</h3>
+    <p><strong>Jobb kattintással</strong> (mobilon: hosszú nyomással ~0.5 mp) jelölhetsz szabadságot.</p>
+    <ul>
+      <li>Csak <strong>hétköznapra</strong> jelölhető (hétvégére nem)</li>
+      <li>Nincs limit – akár minden hétköznapra kérhetsz</li>
+      <li>Újabb jobb kattintással törölhető</li>
+    </ul>
+    <div class="tip">💡 Ha egy napra XX van és jobb klikket nyomsz, SZ-re vált – és fordítva.</div>`
+  },
+  {
+    title: "4. lépés – Túlóra és csúszó műszak",
+    illustration: `<div class="illu-mock">
+      <div style="text-align:left;font-size:12px;color:#666;margin-bottom:6px">Szeretnél túlórát? <span style="font-size:10px;color:#999">(csak 8 órásoknak)</span></div>
+      <div class="illu-toggle" style="justify-content:flex-start;margin-bottom:12px">
+        <div class="illu-tbtn">Nem</div>
+        <div class="illu-tbtn on">Igen</div>
+      </div>
+      <div style="background:#f5f5f3;border-radius:8px;padding:8px;margin-bottom:12px">
+        <div style="font-size:11px;color:#666;margin-bottom:4px">Hány órát?</div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap">
+          ${[12,24,36,48,60].map(h=>`<span style="padding:3px 8px;border-radius:6px;font-size:11px;background:${h===24?'#1D9E75':'#fff'};color:${h===24?'#fff':'#666'};border:1px solid ${h===24?'#1D9E75':'#ddd'}">${h}h</span>`).join("")}
+        </div>
+      </div>
+      <div style="text-align:left;font-size:12px;color:#666;margin-bottom:6px">Szeretnél csúszó műszakot?</div>
+      <div class="illu-toggle" style="justify-content:flex-start">
+        <div class="illu-tbtn on">Nem</div>
+        <div class="illu-tbtn">Igen</div>
+      </div>
+    </div>`,
+    text: `<h3>Extra lehetőségek</h3>
+    <ul>
+      <li><strong>Túlóra</strong> (csak napi 8 órásoknak): ha szeretnél extra órákat dolgozni, válassz 12/24/36/48/60 óra közül</li>
+      <li><strong>Csúszó műszak</strong>: mindenkinél megjelenik – ha szeretnél csúszó műszakot, válaszd az "Igen"-t</li>
+    </ul>
+    <div class="tip">💡 Ha nem kérsz egyiket sem, maradj "Nem"-en – ez az alapértelmezett.</div>`
+  },
+  {
+    title: "5. lépés – Beküldés",
+    illustration: `<div class="illu-mock">
+      <div class="illu-check">✓</div>
+      <div style="font-size:15px;font-weight:600;color:#1a1a1a;margin:8px 0 4px">Sikeresen beküldve!</div>
+      <div style="font-size:12px;color:#666">Kovács Anna – 5 szabadnap + 2 szabadság rögzítve</div>
+      <div style="margin-top:12px;background:#E1F5EE;border-radius:8px;padding:8px 12px;font-size:12px;color:#085041">
+        Az adatok automatikusan megérkeztek a beosztóhoz 📨
+      </div>
+    </div>`,
+    text: `<h3>Minden kész – küldd be!</h3>
+    <p>Ha minden jelölést elvégeztél, kattints a zöld <strong>"Beküldés"</strong> gombra.</p>
+    <ul>
+      <li>A gomb csak akkor aktív, ha ki van választva a neved és legalább egy napot jelöltél</li>
+      <li>Beküldés után egy megerősítő üzenetet látsz</li>
+      <li>Az adatok azonnal megjelennek a beosztónál</li>
+    </ul>
+    <div class="tip">⚠️ Csak egyszer küldd be! Ha hibát észlelsz, jelezd a beosztónak.</div>`
+  },
+  {
+    title: "⏰ Mikor tölthető ki?",
+    illustration: `<div class="illu-mock">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:40px;height:40px;border-radius:50%;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:18px">🟢</div>
+        <div style="text-align:left"><div style="font-size:13px;font-weight:600;color:#1a1a1a">Nyitva</div><div style="font-size:12px;color:#666">Minden hónap 1–11-e között</div></div>
+      </div>
+      <div style="height:1px;background:#e5e5e5;margin:8px 0"></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+        <div style="width:40px;height:40px;border-radius:50%;background:#FFF3E0;display:flex;align-items:center;justify-content:center;font-size:18px">🔒</div>
+        <div style="text-align:left"><div style="font-size:13px;font-weight:600;color:#1a1a1a">Zárva</div><div style="font-size:12px;color:#666">11-én 23:00 után – hónap végéig</div></div>
+      </div>
+    </div>`,
+    text: `<h3>Fontos határidők</h3>
+    <ul>
+      <li>Az app minden hónap <strong>1-jén nyílik</strong> és <strong>11-én este zár</strong></li>
+      <li>Ha lekésed a határidőt, a következő hónapban már nincs lehetőség módosítani</li>
+      <li>A naptár automatikusan a <strong>következő hónapra</strong> mutat</li>
+    </ul>
+    <div class="tip">📱 Könyvjelzőzd be az app linkjét, hogy minden hónapban könnyen megtaláld!</div>`
+  }
+];
+
+let currentStep = 0;
+
+function openTutorial(){
+  currentStep = 0;
+  document.getElementById("tutorialBg").style.display = "flex";
+  renderTutorialStep();
+}
+
+function closeTutorial(){
+  document.getElementById("tutorialBg").style.display = "none";
+}
+
+function tutorialStep(dir){
+  currentStep = Math.max(0, Math.min(tutorialSteps.length-1, currentStep+dir));
+  renderTutorialStep();
+}
+
+function renderTutorialStep(){
+  const s = tutorialSteps[currentStep];
+  document.getElementById("tutorialTitle").textContent = s.title;
+  document.getElementById("tutorialIllustration").innerHTML = s.illustration;
+  document.getElementById("tutorialText").innerHTML = s.text;
+
+  // Dots
+  const dots = document.getElementById("tutorialDots");
+  dots.innerHTML = "";
+  tutorialSteps.forEach((_,i)=>{
+    const d = document.createElement("div");
+    d.className = "t-dot" + (i===currentStep?" active":"");
+    d.onclick = ()=>{ currentStep=i; renderTutorialStep(); };
+    d.style.cursor="pointer";
+    dots.appendChild(d);
+  });
+
+  // Gombok
+  document.getElementById("tutorialPrev").disabled = currentStep===0;
+  const nextBtn = document.getElementById("tutorialNext");
+  if(currentStep===tutorialSteps.length-1){
+    nextBtn.textContent = "✓ Értettem, kezdjük!";
+    nextBtn.onclick = closeTutorial;
+  } else {
+    nextBtn.textContent = "Következő →";
+    nextBtn.onclick = ()=>tutorialStep(1);
+  }
+}
+
+// Kattintás háttérre zárja
+document.getElementById("tutorialBg").addEventListener("click", function(e){
+  if(e.target===this) closeTutorial();
+});
+</script>
+
 
 
 </body></html>
