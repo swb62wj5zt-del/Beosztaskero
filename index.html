@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)file:///C:/Users/Kocka/Desktop/Beoszt%C3%A1sk%C3%A9r%C5%91.html -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beosztáskérő</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f5f5f3;color:#1a1a1a;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:2rem 1rem}
+h1{font-size:22px;font-weight:500;margin-bottom:0.25rem}
+.sub{font-size:14px;color:#666;margin-bottom:2rem}
+.card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+label{font-size:14px;color:#666;display:block;margin-bottom:6px}
+.autocomplete-wrap{position:relative}
+.autocomplete-wrap input{width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:15px;background:#fff;color:#1a1a1a;font-family:inherit}
+.autocomplete-wrap input:focus{outline:2px solid #1D9E75;border-color:#1D9E75}
+.dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid #ddd;border-radius:8px;max-height:220px;overflow-y:auto;z-index:100;display:none;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+.dropdown.open{display:block}
+.dropdown-item{padding:8px 12px;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.dropdown-item:hover,.dropdown-item.active{background:#f0f0ee}
+.dropdown-item .ora-badge{font-size:12px;color:#999;background:#f0f0ee;padding:2px 7px;border-radius:10px}
+.info-box{background:#f5f5f3;border-radius:8px;padding:0.75rem 1rem;font-size:14px;color:#666;margin-top:0.75rem}
+.info-box strong{color:#1a1a1a;font-weight:500}
+.legend{display:flex;gap:12px;margin-bottom:0.75rem;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:13px;color:#666}
+.legend-dot{width:22px;height:22px;border-radius:4px;border:1px solid;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.legend-dot.xx{background:#E1F5EE;border-color:#1D9E75;color:#085041}
+.legend-dot.sz{background:#EDE7F6;border-color:#7B5EA7;color:#4A2D8A}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem}
+.cal-title{font-size:15px;font-weight:500}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.day-label{text-align:center;font-size:11px;color:#999;padding:4px 0}
+.day{text-align:center;padding:6px 2px;border-radius:6px;font-size:12px;cursor:pointer;border:1px solid transparent;user-select:none;min-height:34px;display:flex;align-items:center;justify-content:center;flex-direction:column;line-height:1.1}
+.day:hover:not(.empty):not(.past){background:#f0f0ee}
+.day.xx{background:#E1F5EE;border-color:#1D9E75;color:#085041;font-weight:500}
+.day.sz{background:#EDE7F6;border-color:#7B5EA7;color:#4A2D8A;font-weight:500}
+.day.empty{cursor:default}
+.day.past{color:#ccc;cursor:not-allowed}
+.day.weekend{color:#aaa}
+.day-num{font-size:13px}
+.day-tag{font-size:9px;font-weight:700;letter-spacing:0.02em}
+.hint{font-size:12px;color:#999;margin-bottom:0.5rem}
+.limit-bar{height:4px;border-radius:2px;background:#e5e5e5;margin-top:0.75rem;overflow:hidden}
+.limit-fill{height:100%;border-radius:2px;background:#1D9E75;transition:width 0.2s}
+.limit-fill.warn{background:#EF9F27}
+.limit-fill.full{background:#E24B4A}
+.limit-text{font-size:13px;color:#666;margin-top:4px}
+.stats{display:flex;gap:12px;margin-top:8px}
+.stat{font-size:13px;padding:4px 10px;border-radius:6px;font-weight:500}
+.stat.xx{background:#E1F5EE;color:#085041}
+.stat.sz{background:#EDE7F6;color:#4A2D8A}
+.btn{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;background:#fff;color:#1a1a1a;font-size:15px;cursor:pointer;font-family:inherit}
+.btn:hover{background:#f5f5f3}
+.btn.primary{background:#1D9E75;border-color:#1D9E75;color:#fff}
+.btn.primary:hover{background:#0F6E56}
+.btn.primary:disabled{background:#e5e5e5;border-color:#e5e5e5;color:#999;cursor:not-allowed}
+.btn.small{font-size:13px;padding:6px 12px;width:auto}
+.toggle-group{display:flex;gap:8px}
+.toggle-btn{flex:1;padding:8px 12px;border-radius:8px;border:1px solid #ddd;background:#fff;color:#1a1a1a;font-size:14px;cursor:pointer;font-family:inherit}
+.toggle-btn:hover{background:#f5f5f3}
+.toggle-btn.active{background:#1D9E75;border-color:#1D9E75;color:#fff}
+.name-actions{display:flex;gap:8px;margin-top:8px}
+.success{text-align:center;padding:3rem 1rem;display:none}
+.check{font-size:64px;color:#1D9E75;margin-bottom:1rem}
+.success h2{font-size:20px;font-weight:500;margin-bottom:0.5rem}
+.success p{color:#666;font-size:14px}
+.nav-btn{background:none;border:none;cursor:pointer;padding:4px 10px;border-radius:4px;color:#666;font-size:20px;line-height:1}
+.nav-btn:hover{background:#f0f0ee}
+.error-msg{color:#E24B4A;font-size:13px;margin-top:0.5rem;display:none}
+.zarva-box{text-align:center;padding:3rem 1rem}
+.zarva-icon{font-size:56px;margin-bottom:1rem}
+.zarva-box h2{font-size:20px;font-weight:500;margin-bottom:0.5rem}
+.zarva-box p{color:#666;font-size:14px;line-height:1.6}
+.loading{text-align:center;padding:3rem 1rem;color:#999;font-size:15px}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:200;display:none;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:1.5rem;width:90%;max-width:400px}
+.modal h3{font-size:16px;font-weight:500;margin-bottom:1rem}
+.modal label{margin-top:0.75rem}
+.modal input,.modal select{width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:15px;font-family:inherit;margin-top:4px}
+.modal input:focus,.modal select:focus{outline:2px solid #1D9E75;border-color:#1D9E75}
+.modal-btns{display:flex;gap:8px;margin-top:1rem}
+</style>
+</head>
+<body>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <h3>Új dolgozó hozzáadása</h3>
+    <label>Teljes név</label>
+    <input type="text" id="modalNev" placeholder="Pl. Kovács Anna">
+    <label>Napi munkaóra</label>
+    <select id="modalOra">
+      <option value="">— Válassz —</option>
+      <option value="8">8 óra</option>
+      <option value="6">6 óra</option>
+      <option value="5.5">5,5 óra</option>
+      <option value="3.85">3,85 óra</option>
+      <option value="2.85">2,85 óra</option>
+      <option value="2.2">2,2 óra</option>
+    </select>
+    <div class="modal-btns">
+      <button class="btn primary" id="modalOk">Hozzáadás</button>
+      <button class="btn" id="modalCancel">Mégse</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="loadingView" class="loading" style="display: none;">Betöltés...</div>
+
+  <div id="zarvaView" class="zarva-box" style="display:none">
+    <div class="zarva-icon">🔒</div>
+    <h2>A kitöltés lezárult</h2>
+    <p>A beosztáskérő minden hónap 11-én 23:59-kor zár,<br>és 1-jén nyílik újra.<br><br>Következő nyitás: a jövő hónap 1-je.</p>
+  </div>
+
+  <div id="formView" style="display: block;">
+    <h1>Beosztáskérő</h1>
+    <p class="sub" id="monthLabel">2026. július – kerések beküldése</p>
+
+    <div class="card">
+      <label>Teljes név</label>
+      <div class="autocomplete-wrap">
+        <input type="text" id="nevInput" placeholder="Kezdj el gépelni..." autocomplete="off">
+        <div class="dropdown" id="nevDropdown"></div>
+      </div>
+      <div class="info-box" id="oraInfo" style="display:none">
+        Szerződött napi óra: <strong id="oraInfoVal">—</strong> &nbsp;·&nbsp; Kompetencia: <strong id="kompInfoVal">—</strong>
+      </div>
+      <div class="name-actions">
+        <button class="btn small" id="addNameBtn">+ Új dolgozó</button>
+        <label class="btn small" style="cursor:pointer;text-align:center">
+          📥 Excel import
+          <input type="file" id="excelFile" accept=".xlsx,.xls" style="display:none">
+        </label>
+      </div>
+    </div>
+
+    <div class="card" id="calCard" style="display:none">
+      <div class="cal-header">
+        <span class="cal-title" id="calTitle"></span>
+        <div>
+          <button class="nav-btn" id="prevBtn">‹</button>
+          <button class="nav-btn" id="nextBtn">›</button>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot xx">XX</div> Szabadnap – koppintás</div>
+        <div class="legend-item"><div class="legend-dot sz">SZ</div> Szabadság – hosszú nyomás / jobb klikk</div>
+      </div>
+      <p class="hint">Hétvégére csak szabadnap (XX) jelölhető.</p>
+      <div class="cal-grid" id="calGrid"></div>
+      <div class="limit-bar"><div class="limit-fill" id="limitFill" style="width:0%"></div></div>
+      <div class="limit-text" id="limitText"></div>
+      <div class="stats">
+        <div class="stat xx" id="statXX">XX: 0 nap</div>
+        <div class="stat sz" id="statSZ">SZ: 0 nap</div>
+      </div>
+    </div>
+
+    <div class="card" id="limitCard" style="display:none">
+      <div class="info-box" style="margin-top:0">
+        Max kérhető szabadnap (XX): <strong id="limitNum">—</strong> nap
+        <br><small style="font-size:12px;color:#999" id="limitFormula"></small>
+      </div>
+    </div>
+
+    <div class="card" id="extraCard" style="display:none">
+      <div id="overtimeBlock" style="display:none">
+        <label>Szeretnél túlórát?</label>
+        <div class="toggle-group" id="overtimeToggle">
+          <button type="button" class="toggle-btn" data-val="nem">Nem</button>
+          <button type="button" class="toggle-btn" data-val="igen">Igen</button>
+        </div>
+        <div id="overtimeHoursWrap" style="display:none;margin-top:0.75rem">
+          <label>Hány órát?</label>
+          <select id="overtimeHours">
+            <option value="12">12 óra</option>
+            <option value="24">24 óra</option>
+            <option value="36">36 óra</option>
+            <option value="48">48 óra</option>
+            <option value="60">60 óra</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="cuszoBlock" style="margin-top:1rem">
+        <label>Szeretnél csúszó műszakot?</label>
+        <div class="toggle-group" id="cuszoToggle">
+          <button type="button" class="toggle-btn" data-val="nem">Nem</button>
+          <button type="button" class="toggle-btn" data-val="igen">Igen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="submitCard" style="display:none">
+      <button class="btn primary" id="submitBtn" disabled="">Beküldés</button>
+      <div class="error-msg" id="errorMsg">Hiba történt, próbáld újra.</div>
+    </div>
+  </div>
+
+  <div class="success" id="successView">
+    <div class="check">✓</div>
+    <h2>Sikeresen beküldve!</h2>
+    <p id="successText"></p>
+    <button class="btn" style="margin-top:1.5rem;max-width:200px;margin-left:auto;margin-right:auto" onclick="location.reload()">Új beküldés</button>
+  </div>
+</div>
+
+<script src="./index_files/xlsx.full.min.js.letöltés"></script>
+<script>
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwEtE_gzorKjZ9BGJ4EqrP5Mb-BEjDXtsh1HPIkD7SHxZTWyaZP45odlKYnkihcbEA/exec";
+const STORAGE_KEY = "beosztaskero_dolgozok";
+
+const now = new Date();
+const targetDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+let viewYear = targetDate.getFullYear();
+let viewMonth = targetDate.getMonth();
+const monthNames = ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
+
+function getDaysInMonth(y,m){return new Date(y,m+1,0).getDate();}
+function getWorkdays(y,m){
+  let c=0,t=getDaysInMonth(y,m);
+  for(let i=1;i<=t;i++){const w=new Date(y,m,i).getDay();if(w!==0&&w!==6)c++;}
+  return c;
+}
+const totalDays = getDaysInMonth(viewYear, viewMonth);
+const workdays = getWorkdays(viewYear, viewMonth);
+
+// dolgozok: [{nev, ora}]
+function loadDolgozok(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY))||[]; }catch(e){return[];} }
+function saveDolgozok(d){ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+let dolgozok = loadDolgozok();
+// Teszt adatok file:// módhoz (éles verzióban a Sheets felülírja)
+if(dolgozok.length === 0){
+  dolgozok = [
+    {komp:"MVT", ora:8, nev:"Teszt Anna"},
+    {komp:"SZD", ora:6, nev:"Teszt Béla"},
+    {komp:"OH",  ora:5.5, nev:"Teszt Csilla"},
+    {komp:"T",   ora:3.85, nev:"Teszt Dénes"},
+    {komp:"SÁ",  ora:2.2, nev:"Teszt Eszter"}
+  ];
+}
+let dolgozokBetoltve = false;
+
+let selectedDolgozo = null; // {nev, ora}
+let maxDays = 0;
+let dayState = {};
+let tulora = "nem";
+let tuloraOra = 0;
+let cuszo = "nem";
+
+function calcMax(ora){ return Math.ceil(totalDays - ((ora * workdays / 12) * 1.5)); }
+
+// --- Autocomplete ---
+const nevInput = document.getElementById("nevInput");
+const dropdown = document.getElementById("nevDropdown");
+
+function renderDropdown(filter){
+  const f = filter.toLowerCase();
+  const filtered = dolgozok.filter(d => d.nev.toLowerCase().includes(f));
+  dropdown.innerHTML = "";
+  filtered.forEach(d => {
+    const item = document.createElement("div");
+    item.className = "dropdown-item";
+    item.innerHTML = `<span>${d.nev}</span><div style="display:flex;gap:4px"><span class="ora-badge">${d.komp||""}</span><span class="ora-badge">${d.ora} óra</span></div>`;
+    item.addEventListener("mousedown", ()=>{
+      selectDolgozo(d);
+      dropdown.classList.remove("open");
+    });
+    dropdown.appendChild(item);
+  });
+  dropdown.classList.toggle("open", filtered.length > 0);
+}
+
+function selectDolgozo(d){
+  selectedDolgozo = d;
+  nevInput.value = d.nev;
+  maxDays = calcMax(d.ora);
+  document.getElementById("oraInfo").style.display = "block";
+  document.getElementById("oraInfoVal").textContent = `${d.ora} óra`;
+  document.getElementById("kompInfoVal").textContent = d.komp || "—";
+  document.getElementById("limitNum").textContent = maxDays;
+  document.getElementById("limitFormula").textContent =
+    `FELKEREKÍT(${totalDays} − ((${d.ora} × ${workdays} munkanap / 12) × 1,5))`;
+  document.getElementById("calCard").style.display = "block";
+  document.getElementById("limitCard").style.display = "block";
+  document.getElementById("submitCard").style.display = "block";
+  document.getElementById("extraCard").style.display = "block";
+
+  // Túlóra blokk csak 8 órásoknál
+  const isEight = Math.abs(d.ora - 8) < 0.001;
+  document.getElementById("overtimeBlock").style.display = isEight ? "block" : "none";
+
+  // Toggle-ök reset
+  tulora = "nem"; tuloraOra = 0; cuszo = "nem";
+  document.querySelectorAll("#overtimeToggle .toggle-btn").forEach(b=>b.classList.toggle("active", b.dataset.val==="nem"));
+  document.querySelectorAll("#cuszoToggle .toggle-btn").forEach(b=>b.classList.toggle("active", b.dataset.val==="nem"));
+  document.getElementById("overtimeHoursWrap").style.display = "none";
+  document.getElementById("overtimeHours").value = "12";
+
+  dayState = {};
+  renderCal();
+  checkSubmit();
+}
+
+nevInput.addEventListener("input", function(){
+  selectedDolgozo = null;
+  document.getElementById("oraInfo").style.display = "none";
+  document.getElementById("calCard").style.display = "none";
+  document.getElementById("limitCard").style.display = "none";
+  document.getElementById("submitCard").style.display = "none";
+  renderDropdown(this.value);
+  checkSubmit();
+});
+nevInput.addEventListener("focus", function(){ renderDropdown(this.value); });
+nevInput.addEventListener("blur", ()=>{ setTimeout(()=>dropdown.classList.remove("open"), 150); });
+
+// --- Új dolgozó modal ---
+document.getElementById("addNameBtn").addEventListener("click", ()=>{
+  document.getElementById("modalNev").value = "";
+  document.getElementById("modalOra").value = "";
+  document.getElementById("modalBg").classList.add("open");
+  document.getElementById("modalNev").focus();
+});
+document.getElementById("modalCancel").addEventListener("click", ()=>document.getElementById("modalBg").classList.remove("open"));
+document.getElementById("modalOk").addEventListener("click", ()=>{
+  const nev = document.getElementById("modalNev").value.trim();
+  const ora = parseFloat(document.getElementById("modalOra").value);
+  if(!nev || !ora){ alert("Kérlek töltsd ki mindkét mezőt!"); return; }
+  if(!dolgozok.find(d=>d.nev===nev)){
+    dolgozok.push({nev, ora});
+    dolgozok.sort((a,b)=>a.nev.localeCompare(b.nev,"hu"));
+    saveDolgozok(dolgozok);
+  }
+  selectDolgozo({nev, ora});
+  document.getElementById("modalBg").classList.remove("open");
+});
+document.getElementById("modalNev").addEventListener("keydown", e=>{ if(e.key==="Enter") document.getElementById("modalOra").focus(); });
+
+// --- Excel import ---
+document.getElementById("excelFile").addEventListener("change", function(e){
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    const wb = XLSX.read(ev.target.result, {type:"binary"});
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const data = XLSX.utils.sheet_to_json(ws, {header:1});
+    const newList = [];
+    data.forEach(row => {
+      const ora = parseFloat(row[0]);
+      const nev = row[1] ? String(row[1]).trim() : "";
+      if(nev && !isNaN(ora)) newList.push({nev, ora});
+    });
+    if(newList.length === 0){ alert("Nem találtam érvényes adatot. Ellenőrizd: A oszlop = óra, B oszlop = név."); return; }
+    dolgozok = newList.sort((a,b)=>a.nev.localeCompare(b.nev,"hu"));
+    saveDolgozok(dolgozok);
+    alert(`${dolgozok.length} dolgozó betöltve!`);
+    nevInput.value = ""; selectedDolgozo = null;
+    document.getElementById("oraInfo").style.display="none";
+    document.getElementById("calCard").style.display="none";
+    document.getElementById("limitCard").style.display="none";
+    document.getElementById("submitCard").style.display="none";
+  };
+  reader.readAsBinaryString(file);
+  this.value = "";
+});
+
+// --- Naptár ---
+function isWeekend(y,m,d){const w=new Date(y,m,d).getDay();return w===0||w===6;}
+function isPastDay(y,m,d){
+  return(y<now.getFullYear())||(y===now.getFullYear()&&m<now.getMonth())||
+    (y===now.getFullYear()&&m===now.getMonth()&&d<=now.getDate());
+}
+function countXX(){return Object.values(dayState).filter(v=>v==="XX").length;}
+function countSZ(){return Object.values(dayState).filter(v=>v==="SZ").length;}
+
+function handleDayClick(key,y,m,d,isRight){
+  const weekend=isWeekend(y,m,d);
+  const cur=dayState[key];
+  if(isRight){
+    if(weekend) return;
+    dayState[key] = cur==="SZ" ? undefined : "SZ";
+    if(dayState[key]===undefined) delete dayState[key];
+  } else {
+    if(cur==="XX"){ delete dayState[key]; }
+    else if(cur==="SZ"){ dayState[key]="XX"; }
+    else { if(countXX()<maxDays) dayState[key]="XX"; }
+  }
+  renderCal(); checkSubmit();
+}
+
+let longPressTimer = null;
+
+function renderCal(){
+  const grid=document.getElementById("calGrid");
+  grid.innerHTML="";
+  document.getElementById("calTitle").textContent=`${viewYear}. ${monthNames[viewMonth]}`;
+  ["H","K","Sze","Cs","P","Szo","V"].forEach(d=>{
+    const el=document.createElement("div");el.className="day-label";el.textContent=d;grid.appendChild(el);
+  });
+  const firstDay=new Date(viewYear,viewMonth,1).getDay();
+  const offset=firstDay===0?6:firstDay-1;
+  for(let i=0;i<offset;i++){const el=document.createElement("div");el.className="day empty";grid.appendChild(el);}
+  const total=getDaysInMonth(viewYear,viewMonth);
+  for(let d=1;d<=total;d++){
+    const el=document.createElement("div");el.className="day";
+    const key=`${viewYear}-${viewMonth}-${d}`;
+    const weekend=isWeekend(viewYear,viewMonth,d);
+    const past=isPastDay(viewYear,viewMonth,d);
+    const state=dayState[key];
+    if(weekend) el.classList.add("weekend");
+    if(past) el.classList.add("past");
+    if(state==="XX") el.classList.add("xx");
+    if(state==="SZ") el.classList.add("sz");
+    const numEl=document.createElement("div");numEl.className="day-num";numEl.textContent=d;el.appendChild(numEl);
+    if(state){const tagEl=document.createElement("div");tagEl.className="day-tag";tagEl.textContent=state;el.appendChild(tagEl);}
+    if(!past){
+      el.addEventListener("click",e=>{e.preventDefault();handleDayClick(key,viewYear,viewMonth,d,false);});
+      el.addEventListener("contextmenu",e=>{e.preventDefault();handleDayClick(key,viewYear,viewMonth,d,true);});
+      el.addEventListener("touchstart",()=>{longPressTimer=setTimeout(()=>{handleDayClick(key,viewYear,viewMonth,d,true);longPressTimer=null;},500);},{passive:true});
+      el.addEventListener("touchend",()=>{if(longPressTimer){clearTimeout(longPressTimer);longPressTimer=null;}});
+      el.addEventListener("touchmove",()=>{if(longPressTimer){clearTimeout(longPressTimer);longPressTimer=null;}});
+    }
+    grid.appendChild(el);
+  }
+  updateBar();
+}
+
+function updateBar(){
+  const xx=countXX(),sz=countSZ();
+  const pct=maxDays>0?(xx/maxDays)*100:0;
+  const fill=document.getElementById("limitFill");
+  fill.style.width=pct+"%";
+  fill.className="limit-fill"+(pct>=100?" full":pct>=75?" warn":"");
+  document.getElementById("limitText").textContent=`Szabadnap (XX): ${xx} / ${maxDays}`;
+  document.getElementById("statXX").textContent=`XX: ${xx} nap`;
+  document.getElementById("statSZ").textContent=`SZ: ${sz} nap`;
+}
+
+function checkSubmit(){
+  const ok = selectedDolgozo && Object.keys(dayState).length > 0;
+  document.getElementById("submitBtn").disabled = !ok;
+}
+
+document.getElementById("prevBtn").addEventListener("click",()=>{if(viewMonth===0){viewYear--;viewMonth=11;}else{viewMonth--;}renderCal();});
+document.getElementById("nextBtn").addEventListener("click",()=>{if(viewMonth===11){viewYear++;viewMonth=0;}else{viewMonth++;}renderCal();});
+
+// --- Túlóra / Csúszó toggle-ök ---
+document.querySelectorAll("#overtimeToggle .toggle-btn").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    tulora = btn.dataset.val;
+    document.querySelectorAll("#overtimeToggle .toggle-btn").forEach(b=>b.classList.toggle("active", b===btn));
+    document.getElementById("overtimeHoursWrap").style.display = (tulora==="igen") ? "block" : "none";
+    if(tulora==="igen"){
+      tuloraOra = parseInt(document.getElementById("overtimeHours").value);
+    } else {
+      tuloraOra = 0;
+    }
+  });
+});
+document.getElementById("overtimeHours").addEventListener("change", function(){
+  tuloraOra = parseInt(this.value);
+});
+
+document.querySelectorAll("#cuszoToggle .toggle-btn").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    cuszo = btn.dataset.val;
+    document.querySelectorAll("#cuszoToggle .toggle-btn").forEach(b=>b.classList.toggle("active", b===btn));
+  });
+});
+
+// --- Beküldés ---
+document.getElementById("submitBtn").addEventListener("click", async()=>{
+  const napGrid={};
+  for(let i=1;i<=31;i++) napGrid[i]="";
+  Object.entries(dayState).forEach(([k,v])=>{const[y,m,d]=k.split("-");napGrid[parseInt(d)]=v;});
+  const honap=`${viewYear}-${String(viewMonth+1).padStart(2,"0")}`;
+  const payload={
+    nev:selectedDolgozo.nev,
+    napi_ora:selectedDolgozo.ora,
+    kompetencia:selectedDolgozo.komp||"",
+    honap,
+    munkanaok_szama:workdays,
+    max_szabadnap:maxDays,
+    nap_grid:napGrid,
+    xx_count:countXX(),
+    sz_count:countSZ(),
+    tulora_ora:tuloraOra,
+    cuszo:cuszo==="igen" ? "X" : "",
+    bekuldes_ideje:new Date().toISOString()
+  };
+  const btn=document.getElementById("submitBtn");
+  const err=document.getElementById("errorMsg");
+  btn.disabled=true;btn.textContent="Beküldés...";err.style.display="none";
+  try{
+    await fetch(WEBHOOK_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    document.getElementById("formView").style.display="none";
+    document.getElementById("successView").style.display="block";
+    document.getElementById("successText").textContent=
+      `${selectedDolgozo.nev} – ${countXX()} szabadnap + ${countSZ()} szabadság rögzítve (${viewYear}. ${monthNames[viewMonth]})`;
+  }catch(e){
+    btn.disabled=false;btn.textContent="Beküldés";err.style.display="block";
+  }
+});
+
+// --- Init ---
+async function init(){
+  const day=now.getDate();
+  // Zárva: 11-én 23:59 után (tehát 12-étől), nyitva: 1-10-ig
+  const hour = now.getHours();
+  const testMode = window.location.search.includes("test=1") || window.location.href.startsWith("file://");
+  const zarva = !testMode && ((day > 11) || (day === 11 && hour >= 23));
+  if(zarva){
+    document.getElementById("loadingView").style.display="none";
+    document.getElementById("zarvaView").style.display="block";
+    return;
+  }
+  try{
+    const res = await fetch(WEBHOOK_URL+"?action=nevsor");
+    const data = await res.json();
+    if(data && data.length > 0){
+      dolgozok = data.sort((a,b)=>a.nev.localeCompare(b.nev,"hu"));
+      saveDolgozok(dolgozok);
+    }
+  } catch(e){
+    console.log("Sheets nevsor nem erheto, cache-bol toltve.");
+  }
+  document.getElementById("loadingView").style.display="none";
+  document.getElementById("formView").style.display="block";
+  document.getElementById("monthLabel").textContent=`${viewYear}. ${monthNames[viewMonth]} – kerések beküldése`;
+}
+init();
+</script>
+
+
+</body></html>
